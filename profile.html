@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - SkillConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <a class="logo" href="index.html">SkillConnect</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="profile.html">My Profile</a>
+            <a href="create-service.html">Create Service</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-heading">
+            <h1>My Freelancer Profile</h1>
+            <p class="muted">Manage your information and services.</p>
+        </section>
+
+        <section class="card profile-card">
+            <div class="avatar" id="profileAvatar">M</div>
+
+            <div class="profile-info">
+                <h2 id="profileName">Mehak Fatima</h2>
+                <p id="profileSkills">HTML, CSS, JavaScript</p>
+                <p id="profileLocation" class="muted">Lahore, Pakistan</p>
+            </div>
+
+            <button type="button" id="editProfileBtn" class="btn">
+                Edit Profile
+            </button>
+        </section>
+
+        <section class="card hidden" id="profileEditor">
+            <h2>Edit Profile</h2>
+
+            <form id="profileForm">
+                <label for="nameInput">Full Name</label>
+                <input id="nameInput" type="text" required>
+
+                <label for="skillsInput">Skills</label>
+                <input id="skillsInput" type="text" required>
+
+                <label for="locationInput">Location</label>
+                <input id="locationInput" type="text" required>
+
+                <button type="submit" class="btn">Save Changes</button>
+                <button type="button" id="cancelProfileBtn"
+                        class="btn btn-light">Cancel</button>
+
+                <p id="profileMessage" class="message"></p>
+            </form>
+        </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>My Services</h2>
+                    <p class="muted">View and manage your services.</p>
+                </div>
+                <a href="create-service.html" class="btn">
+                    + Create Service
+                </a>
+            </div>
+
+            <div id="servicesList" class="service-grid"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>SkillConnect</p>
+    </footer>
+
+</body>
+</html>

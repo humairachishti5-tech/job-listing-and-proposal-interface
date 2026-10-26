@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Jobs | CODIORA</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .jobs-container { max-width: 1100px; margin: 30px auto; padding: 20px; }
+        .job-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .job-card { border: 1px solid #ddd; padding: 20px; border-radius: 12px; background: white; }
+        .job-card h2 { color: #5138a8; }
+        .job-card a, .btn { display: inline-block; background: #5138a8; color: white; padding: 10px 15px; border-radius: 6px; text-decoration: none; border: none; cursor: pointer; }
+        .search-box { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+        .search-box input, .search-box select { padding: 12px; border: 1px solid #ccc; border-radius: 6px; flex: 1; min-width: 180px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CODIORA</h1>
+        <p>Our Code Builds Your Vision</p>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="profile.html">Profile</a> |
+            <a href="create-service.html">Create Service</a> |
+            <a href="post-job.html">Post a Job</a> |
+            <a href="my-proposals.html">My Proposals</a>
+        </nav>
+    </header>
+
+    <main class="jobs-container">
+        <h1>Find Your Next Job</h1>
+        <p>Explore opportunities and work with amazing clients.</p>
+
+        <div class="search-box">
+            <input type="text" id="jobSearch" placeholder="Search jobs or skills...">
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="web development">Web Development</option>
+                <option value="graphic design">Graphic Design</option>
+                <option value="content writing">Content Writing</option>
+            </select>
+            <button class="btn" onclick="filterJobs()">Search</button>
+        </div>
+
+        <div class="job-grid" id="jobGrid">
+            <div class="job-card" data-category="web development">
+                <h2>Frontend Developer</h2>
+                <p>Create a responsive business website.</p>
+                <p><strong>Budget:</strong> $150 - $300</p>
+                <p><strong>Skills:</strong> HTML, CSS, JavaScript</p>
+                <a href="job-details.html">View Details</a>
+            </div>
+
+            <div class="job-card" data-category="graphic design">
+                <h2>Graphic Designer</h2>
+                <p>Design creative social media posts.</p>
+                <p><strong>Budget:</strong> $80 - $200</p>
+                <p><strong>Skills:</strong> Canva, Figma</p>
+                <a href="job-details.html">View Details</a>
+            </div>
+
+            <div class="job-card" data-category="content writing">
+                <h2>Content Writer</h2>
+                <p>Write engaging website content.</p>
+                <p><strong>Budget:</strong> $50 - $120</p>
+                <p><strong>Skills:</strong> Writing, Research, SEO</p>
+                <a href="job-details.html">View Details</a>
+            </div>
+        </div>
+        <p id="noJobs" style="display:none;">No matching jobs found.</p>
+    </main>
+
+    <script>
+        function filterJobs() {
+            const search = document.getElementById("jobSearch").value.toLowerCase();
+            const category = document.getElementById("categoryFilter").value;
+            const cards = document.querySelectorAll(".job-card");
+            let visible = 0;
+
+            cards.forEach(function(card) {
+                const text = card.innerText.toLowerCase();
+                const cardCategory = card.dataset.category;
+                const matchesSearch = text.includes(search);
+                const matchesCategory = category === "all" || cardCategory === category;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = "block";
+                    visible++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            document.getElementById("noJobs").style.display =
+                visible === 0 ? "block" : "none";
+        }
+
+        document.getElementById("jobSearch").addEventListener("input", filterJobs);
+        document.getElementById("categoryFilter").addEventListener("change", filterJobs);
+    </script>
+</body>
+</html>

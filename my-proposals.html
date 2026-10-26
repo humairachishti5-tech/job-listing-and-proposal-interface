@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Proposals | CODIORA</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .proposals-container { max-width: 1000px; margin: 30px auto; padding: 20px; }
+        .proposal-card { background: white; border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 15px; }
+        .status { display: inline-block; padding: 6px 12px; border-radius: 15px; background: #fff0c2; color: #805b00; }
+        .accepted { background: #d8f5df; color: #17652b; }
+        .rejected { background: #ffe0e0; color: #a00000; }
+        .btn { background: #5138a8; color: white; border: none; padding: 10px 15px; border-radius: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CODIORA</h1>
+        <p>Our Code Builds Your Vision</p>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="find-jobs.html">Find Jobs</a> |
+            <a href="post-job.html">Post a Job</a> |
+            <a href="submit-proposal.html">Submit Proposal</a>
+        </nav>
+    </header>
+
+    <main class="proposals-container">
+        <h1>My Proposals</h1>
+        <p>View your submitted proposals and their current status.</p>
+
+        <div id="proposalList"></div>
+    </main>
+
+    <script>
+        function displayProposals() {
+            const proposalList = document.getElementById("proposalList");
+            const proposals = JSON.parse(
+                localStorage.getItem("codioraProposals") || "[]"
+            );
+
+            proposalList.innerHTML = "";
+
+            if (proposals.length === 0) {
+                proposalList.textContent =
+                    "No proposals yet. Submit a proposal to see it here.";
+                return;
+            }
+
+            proposals.forEach(function(item, index) {
+                const card = document.createElement("div");
+                card.className = "proposal-card";
+
+                const title = document.createElement("h2");
+                title.textContent = "Proposal #" + (index + 1);
+
+                const name = document.createElement("p");
+                name.textContent = "Freelancer: " + item.name;
+
+                const price = document.createElement("p");
+                price.textContent = "Proposed Price: $" + item.price;
+
+                const delivery = document.createElement("p");
+                delivery.textContent = "Delivery Time: " + item.delivery + " days";
+
+                const skills = document.createElement("p");
+                skills.textContent = "Skills: " + item.skills;
+
+                const status = document.createElement("span");
+                status.className = "status";
+                status.textContent = "Status: " + item.status;
+
+                if (item.status === "Accepted") {
+                    status.classList.add("accepted");
+                } else if (item.status === "Rejected") {
+                    status.classList.add("rejected");
+                }
+
+                card.append(title, name, price, delivery, skills, status);
+                proposalList.appendChild(card);
+            });
+        }
+
+        displayProposals();
+    </script>
+</body>
+</html>

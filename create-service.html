@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Service - SkillConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <a class="logo" href="index.html">SkillConnect</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="profile.html">My Profile</a>
+            <a href="create-service.html">Create Service</a>
+        </nav>
+    </header>
+
+    <main class="container form-container">
+        <section class="page-heading">
+            <h1>Create a Service</h1>
+            <p class="muted">Fill in the details of your service.</p>
+        </section>
+
+        <section class="card">
+            <form id="serviceForm">
+                <label for="serviceTitle">Service Title</label>
+                <input id="serviceTitle" type="text"
+                       placeholder="Website Design" required>
+
+                <label for="serviceDescription">Description</label>
+                <textarea id="serviceDescription"
+                          placeholder="Describe your service..."
+                          required></textarea>
+
+                <div class="form-row">
+                    <div>
+                        <label for="servicePrice">Price (USD)</label>
+                        <input id="servicePrice" type="number"
+                               min="1" step="0.01"
+                               placeholder="50" required>
+                    </div>
+
+                    <div>
+                        <label for="deliveryTime">Delivery Time (days)</label>
+                        <input id="deliveryTime" type="number"
+                               min="1" step="1"
+                               placeholder="3" required>
+                    </div>
+                </div>
+
+                <label for="serviceSkills">Skills / Tags</label>
+                <input id="serviceSkills" type="text"
+                       placeholder="HTML, CSS, JavaScript" required>
+
+                <label for="serviceImage">Service Image URL</label>
+                <input id="serviceImage" type="url"
+                       placeholder="https://example.com/image.jpg" required>
+
+                <p class="muted small">
+                    Enter a valid image URL.
+                </p>
+
+                <div id="imagePreviewBox" class="image-preview hidden">
+                    <img id="imagePreview" src="" alt="Service preview">
+                </div>
+
+                <button type="submit" class="btn">Create Service</button>
+                <a href="profile.html" class="btn btn-light">Cancel</a>
+
+                <p id="formMessage" class="message" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>SkillConnect</p>
+    </footer>
+
+</body>
+</html>
